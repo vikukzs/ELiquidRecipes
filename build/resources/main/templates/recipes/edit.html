@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/new.css" th:href="@{/css/new.css}"/>
+
+    <meta charset="UTF-8"/>
+    <title>Edit Recipe</title>
+</head>
+<body>
+<div class="container">
+
+<form action="#" th:action="@{'/recipes/edit'}" th:object="${recipe}" method="post" id="new_recipe_form">
+    <input type="hidden" th:field="*{id}"/>
+
+    <label for="name">Name</label><br />
+    <input type="text" th:field="*{name}" id="name"/><br />
+
+    <label for="pg">PG %</label><br />
+    <input type="number" th:field="*{pg}" id="pg" max="100" min="0" step="any"/><br />
+
+    <label for="vg">VG %</label><br />
+    <input type="number" th:field="*{vg}" id="vg" min="0" max="100" step="any"/><br />
+
+    <label for="aroma1name">Aroma1 Name</label><br />
+    <input type="text" th:field="*{aroma1name}" id="aroma1name"/><br />
+    <label for="aroma1">Aroma1 %</label><br />
+    <input type="number" th:field="*{aroma1}" id="aroma1" min="0" max="100" step="any"/><br />
+
+    <label for="aroma2name">Aroma2 Name</label><br />
+    <input type="text" th:field="*{aroma2name}" id="aroma2name"/><br />
+    <label for="aroma2">Aroma2 %</label><br />
+    <input type="number" th:field="*{aroma2}" id="aroma2" min="0" max="100" step="any"/><br />
+
+    <label for="aroma3name">Aroma3 Name</label><br />
+    <input type="text" th:field="*{aroma3name}" id="aroma3name"/><br />
+    <label for="aroma3">Aroma3 %</label><br />
+    <input type="number" th:field="*{aroma3}" id="aroma3" min="0" max="100" step="any"/><br />
+
+    <label for="nicotine">Nicotine</label><br />
+    <input type="number" th:field="*{nicotine}" id="nicotine" min="0" max="12" step="any"/><br />
+
+    <button type="submit" id="submit" th:value="submit">Submit</button>
+
+</form>
+</div>
+</body>
+</html>

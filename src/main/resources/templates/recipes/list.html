@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" type="text/css" href="../static/css/list.css" th:href="@{/css/list.css}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>E-liquid Recipes</title>
+</head>
+<body>
+<div class="container">
+    <a class="button button-add" href="/recipes/new">New Recipe</a>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>PG%</th>
+            <th>VG%</th>
+            <th>Aroma1</th>
+            <th>Aroma2</th>
+            <th>Aroma3</th>
+            <th>Nicotine</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe : ${recipes}">
+            <td th:text="${recipe.name}"></td>
+            <td th:text="${recipe.pg}"></td>
+            <td th:text="${recipe.vg}"></td>
+            <td>
+                <p th:text="${recipe.aroma1name}"></p>
+                <p th:text="${recipe.aroma1}"></p>
+            </td>
+            <td>
+                <p th:text="${recipe.aroma2name}"></p>
+                <p th:text="${recipe.aroma2}"></p>
+            </td>
+            <td>
+                <p th:text="${recipe.aroma3name}"></p>
+                <p th:text="${recipe.aroma3}"></p>
+            </td>
+            <td th:text="${recipe.nicotine}"></td>
+            <td>
+                <a th:href="@{'/recipes/{id}/downvote'(id=${recipe.id})}" class="action vote downvote" th:attr="name=${recipe.rating}">
+                    &#11015;
+                </a>
+                <span  th:text="${recipe.rating}"></span>
+                <a th:href="@{'/recipes/{id}/upvote'(id=${recipe.id})}" class="action vote upvote" th:attr="name=${recipe.rating}">
+                    &#11014;
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/recipes/{id}/delete'(id=${recipe.id})}" class="action delete">
+                    &#10006;
+                </a>
+
+                <a th:href="@{'/recipes/{id}/edit'(id=${recipe.id})}" class="action edit">
+                    &#9881;
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <a class="button pag" href="#" th:href="@{'/recipes/?page=0&amp;limit=' + ${recipes.getSize()}}">&lt;&lt;first</a>
+        <!--&lt;!&ndash;add "previous" link if page exists&ndash;&gt;-->
+        <a class="button pag" th:if="${recipes.hasPrevious()}"
+           href="#" th:href="@{'/recipes/?page=' + ${recipes.getNumber()-1} + '&amp;limit=' + ${recipes.getSize()}}"
+           th:rel="${recipes.previousPageable()}">&lt;previous</a>
+        <!--azert kell unless, mert kiakad, ha nincs prev-->
+        <a class="button pag" th:unless="${recipes.previousPageable()}" href="#">&lt;previous</a>
+        <!--add "next" link if page exists-->
+
+        <a class="button pag" href="#" th:href="@{'/recipes/?page=0&amp;limit=2'}">2</a>
+        <a class="button pag" href="#" th:href="@{'/recipes/?page=0&amp;limit=5'}">5</a>
+        <a class="button pag" href="#" th:href="@{'/recipes/?page=0&amp;limit=10'}">10</a>
+
+        <a class="button pag" th:if="${recipes.hasNext()}"
+           href="#" th:href="@{'/recipes/?page=' + ${recipes.getNumber()+1} + '&amp;limit=' + ${recipes.getSize()}}"
+           th:rel="${recipes.nextPageable()}">next&gt;</a>
+        <!--azert kell unless, mert elmegy barmeddig, de ures a lap-->
+        <a class="button pag" th:unless="${recipes.nextPageable()}" href="#">next&gt;</a>
+        <!--add "last" link -->
+        <a class="button pag" href="#" th:href="@{'/recipes/?page=' + ${recipes.getTotalPages()-1} + '&amp;limit=' + ${recipes.getSize()}}">last&gt;&gt;</a>
+    </div></div>
+
+</body>
+</html>

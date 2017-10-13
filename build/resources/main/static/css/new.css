@@ -1,0 +1,54 @@
+body {
+    height: auto;
+    background-color: black;
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    color: lightgrey;
+}
+
+.container {
+    background: url("smoke3.png") repeat;
+    display: block;
+    flex-wrap: nowrap;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-start;
+    margin: auto;
+}
+
+form {
+    width: 50%;
+    margin: auto;
+    margin-bottom: 100%;
+}
+
+input {
+    margin: 10px 0px;
+    border-radius: 5px;
+    border: 1px solid grey;
+    height: 40px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-size: 15px;
+    background-color: #ffeeee;
+}
+
+button {
+    width: 203px;
+    height: 40px;
+    font-size: 17px;
+    font-weight: bold;
+    background: white;
+    border-radius: 5px;
+    background: linear-gradient(white, #b9b1b1);
+    -moz-background: linear-gradient(white, #b9b1b1);
+    -webkit-background: linear-gradient(white, #b9b1b1);
+}
+
+button:hover {
+    background: linear-gradient(#b9b1b1, white);
+    -moz-background: linear-gradient(#b9b1b1, white);
+    -webkit-background: linear-gradient(#b9b1b1, white);
+}
